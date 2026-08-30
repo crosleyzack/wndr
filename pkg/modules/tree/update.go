@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"iter"
+	"log/slog"
 	"regexp"
 	"strconv"
 	"strings"
@@ -44,7 +45,9 @@ func (m *Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			m.NextMatchingNode()
 		case key.Matches(msg, m.KeyMap.Num):
 			if i, err := strconv.Atoi(msg.String()); err == nil {
-				m.SetLayersExpanded(i)
+				if err = m.SetLayersExpanded(i); err != nil {
+					slog.Error(fmt.Sprintf("failed to expand %d node layers: %v", i, err))
+				}
 			}
 		}
 	}
@@ -153,7 +156,7 @@ func (m *Model) NextMatchingNode() {
 	}
 	// get cursor position of current node
 	count := 0
-	nodes.DFS(m.Root, func(node *nodes.Node, layer int) error {
+	err := nodes.DFS(m.Root, func(node *nodes.Node, layer int) error {
 		if node.Equal(m.currentNode) {
 			m.cursor = count
 			return errors.New("break out")
@@ -161,6 +164,9 @@ func (m *Model) NextMatchingNode() {
 		count++
 		return nil
 	})
+	if err != nil {
+		slog.Error(fmt.Sprintf("error finding current node: %v", err))
+	}
 }
 
 // CopyNodePath find path to node and copies it to clipboard
