@@ -5,6 +5,7 @@
 [![License](https://img.shields.io/github/license/crosleyzack/wndr?color=blue)](https://github.com/CrosleyZack/wndr/blob/main/LICENSE)
 [![Release](https://img.shields.io/github/v/release/crosleyzack/wndr?include_prereleases)](https://github.com/crosleyzack/wndr/releases)
 [![CI](https://github.com/CrosleyZack/wndr/actions/workflows/gotest.yaml/badge.svg)](https://github.com/crosleyzack/wndr/actions?workflow=gotest)
+[![Dependabot Updates](https://github.com/crosleyzack/wndr/actions/workflows/dependabot/dependabot-updates/badge.svg)](https://github.com/crosleyzack/wndr/actions/workflows/dependabot/dependabot-updates)
 [![Go Reference](https://pkg.go.dev/badge/github.com/crosleyzack/wndr.svg)](https://pkg.go.dev/github.com/crosleyzack/wndr)
 
 wndr (wander) allows you explore tree-based file formats as an interactive TUI tree. This supports JSON, YAML, and TOML files.
